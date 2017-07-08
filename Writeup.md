@@ -16,12 +16,12 @@ The goals / steps of this project are the following:
 [image1]: ./writeup-media/samples-chart.png "samples"
 [image2]: ./writeup-media/class-10.png "class 10 normal"
 [image3]: ./writeup-media/class-10-grayscale.png "class 10 grayscale"
-[image4]: ./traffic-sign-test-images/a-11.jpg "Traffic Sign 1"
-[image5]: ./traffic-sign-test-images/b-22.jpg "Traffic Sign 2"
-[image6]: ./traffic-sign-test-images/c-14.jpg "Traffic Sign 3"
-[image7]: ./traffic-sign-test-images/d-32.jpg "Traffic Sign 4"
-[image8]: ./traffic-sign-test-images/e-25.jpg "Traffic Sign 5"
-[image9]: ./traffic-sign-test-images/e-40.jpg "Traffic Sign 6"
+[image4]: ./traffic-sign-test-images/e-25.jpg "Traffic Sign 1"
+[image5]: ./traffic-sign-test-images/d-32.jpg "Traffic Sign 2"
+[image6]: ./traffic-sign-test-images/b-22.jpg "Traffic Sign 3"
+[image7]: ./traffic-sign-test-images/e-40.jpg "Traffic Sign 4"
+[image8]: ./traffic-sign-test-images/c-14.jpg "Traffic Sign 5"
+[image9]: ./traffic-sign-test-images/a-11.jpg "Traffic Sign 6"
 
 ## Rubric Points
 ###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
