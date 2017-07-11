@@ -133,8 +133,18 @@ If a well known architecture was chosen:
 
 Here are 6 German traffic signs that I found on the web:
 
-![alt text][image4] ![alt text][image5] ![alt text][image6] 
-![alt text][image7] ![alt text][image8] ![alt text][image9]
+![alt text][image4]
+25 - Road work - ~1400 samples, clear image centered and good lighting, should have good chance.
+![alt text][image5]
+32 - End of all speed and passing limits - only ~200 samples. sign at an angle, will probably have a difficult time classifying.
+![alt text][image6] 
+22 - Bumpy road - only ~300 samples, sign at an angle and a few have the same shape, difficult to classify.
+![alt text][image7]
+40 - Roundabout mandatory - only ~300 samples. good angle of sign and arrows clear to see, reasonable chance of classifying.
+![alt text][image8]
+14 - Stop - there are about ~750 samples of this image, it should be easier to identify due to its distinct shape and quality/angle of this image.
+![alt text][image9]
+11 - Right-of-way at the next intersection - around ~1200 samples, clear sign good angle it should classify it easily.
 
 The first image might be difficult to classify because ...
 
