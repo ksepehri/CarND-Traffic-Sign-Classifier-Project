@@ -22,6 +22,7 @@ The goals / steps of this project are the following:
 [image7]: ./traffic-sign-test-images/e-40.jpg "Traffic Sign 4"
 [image8]: ./traffic-sign-test-images/c-14.jpg "Traffic Sign 5"
 [image9]: ./traffic-sign-test-images/a-11.jpg "Traffic Sign 6"
+[image10]: ./writeup-media/class-10-he-rotate.png "class 10 histogram equalization rotate"
 
 ## Rubric Points
 ###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -64,6 +65,9 @@ Here is an example of a traffic sign image before and after grayscaling.
 
 As a last step, I normalized the image data because we always want our variables to have zero mean and equal variance whenever possible. This is so the optimizer has to do less searching to find a good solution.
 
+After some testing of the model, I improved the processing pipeline by performing histogram equalization and augmenting the data through rotation.
+
+![alt text][image10]
 
 ####2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
 
@@ -102,9 +106,9 @@ The number of epochs was the key to hit the 93% accuracy.
 ####4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
 My final model results were:
-* training set accuracy of .994
-* validation set accuracy of 0.94 
-* test set accuracy of 0.93
+* training set accuracy of .937
+* validation set accuracy of 1.00
+* test set accuracy of 0.929
 
 If an iterative approach was chosen:
 * What was the first architecture that was tried and why was it chosen?
@@ -150,7 +154,7 @@ The first image might be difficult to classify because ...
 
 ####2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
 
-Here are the results of the prediction:
+Here are the results of the prediction, without histogram equalization and rotation:
 
 | Image			        |     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
@@ -164,57 +168,62 @@ Here are the results of the prediction:
 
 The model was able to correctly guess 3 of the 6 traffic signs, which gives an accuracy of 50%.
 
+Here are the results of the prediction, WITH histogram equalization and rotation:
+
+| Image			        |     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| Road work								| Road work   									| 
+| End of all speed and passing limits	| Keep right									|
+| Bumpy road							| Bumpy road								|
+| Roundabout mandatory					| No passing			 				|
+| Stop									| Stop      									|
+| Right-of-way at the next intersection	| Right-of-way at the next intersection							|
+
+
+The model was able to correctly guess 4 of the 6 traffic signs, which gives an accuracy of 66%.
+
 ####3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
 The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
 
-For the first image, the model is very sure that this is a road work sign (probability of 0.99), and the image does contain a road work sign. The top five soft max probabilities were
+These are results of the 2nd iteration with includes histogram equalization and rotation. Overall the model seems to be overfitting less than before.
+
+For the first image, the model is very sure that this is a road work sign (probability of 1), and the image does contain a road work sign. There are 480 samples in the test set with an accuracy of 0.91 so this model is fitting ok. The top five soft max probabilities were
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .99         			| Road work   									| 
-| .00     				| Bicycles crossing								|
-| .00					| Slippery road									|
-| .00	      			| Road narrows on the right		 				|
-| .00				    | Bumpy road      								|
+| 1         			| Road work   									| 
 
 
-For the 2nd image, the model is very sure that this is a keep right sign (probability of 1), and the image is NOT a keep right sign. The top soft max probability was
+For the 2nd image, the model is very sure that this is a keep right sign (probability of .99), and the image is NOT a keep right sign. There are 60 samples in the test set with an accuracy of 0.817 so this model is overfitting. The top soft max probability was
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| 1         			| Keep right   									| 
+| .99         			| Keep right   									| 
 
-For the 3nd image, the model is very sure that this is a Bicycles crossing sign (probability of 0.99), and the image is NOT a Bicycles crossing sign. The top soft max probability was
+For the 3nd image, the model is very sure that this is a Bumpy road sign (probability of 0.99), and the image is a Bumpy road sign. There are 120 samples in the test set with an accuracy of 0.883 so this model is fitting ok. The top soft max probability was
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | 1         			| Bicycles crossing								| 
 
-For the 4th image, the model is pretty sure that this is a Roundabout mandatory sign (probability of 0.84), and the image does contain a Roundabout mandatory sign. The top five soft max probabilities were
+For the 4th image, the model is very sure that this is a No passing sign (probability of 1), and the image is NOT a No passing sign. There are 90 samples in the test set with an accuracy of 0.778 so this model is overfitting. The top soft max probabilities were
+
+| Probability         	|     Prediction	        					|
+|:---------------------:|:---------------------------------------------:| 
+| 1          			| No passing         							| 
+
+For the 5th image, the model is very sure that this is a Stop sign (probability of 0.99), and the image does contain a Stop sign. There are 270 samples in the test set with an accuracy of 0.948 so this model is fitting ok. The top soft max probabilities were
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .84         			| Roundabout mandatory							| 
-| .14     				| Priority road									|
-| .004					| Right-of-way at the next intersection			|
-| .004	      			| Children crossing		 						|
-| .00				    | Pedestrians      								|
+| .99         			| Stop											|
 
-For the 5th image, the model is somewhat sure that this is a Stop sign (probability of 0.61), and the image does contain a Stop sign. The top five soft max probabilities were
+For the 6th image, the model is somewhat sure that this is a Right-of-way at the next intersection (probability of 0.74), and the image is a Right-of-way at the next intersection. There are 420 samples in the test set with an accuracy of 0.967 so this model is underfitting. The top soft max probability was
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .61         			| Stop											| 
-| .38     				| Speed limit (70km/h)							|
-| .00					| Speed limit (20km/h)							|
-| .00	      			| Speed limit (120km/h)		 					|
-| .00				    | Speed limit (50km/h)      					|
-
-For the 5th image, the model is very sure that this is a Beware of ice/snow sign (probability of 0.99), and the image is NOT a Beware of ice/snow sign. The top soft max probability was
-
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| .99         			| Beware of ice/snow							|
+| .745         			| Right-of-way at the next intersection			|
+| .255        			| Beware of ice/snow							|
 
 
